@@ -1,0 +1,35 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require vendor/bootstrap.min
+ *= require vendor/font-awesome.min.css
+ *= require plugins/select2.css
+ *= require plugins/select2-bootstrap.css
+ *= require plugins/bootstrap-switch.min.css
+ *= require theme.css
+ * require_tree .
+ */
+
+/*body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.login-container{
+    position: relative;
+    width: 420px;
+    margin: 80px auto;
+    padding: 20px 40px 40px;
+    background: #fff;
+    border: 1px solid #ccc;
+}*/

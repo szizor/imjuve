@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Listado de Encuestas</h1>
+</div>
+<% if current_user %>
+  <% if params[:action] == "index"%>
+    <p>
+      <%= link_to "Download CSV", export_surveys_path(format: "csv"), :class => 'btn btn-primary' %>
+      <%#= link_to "Excel", export_surveys_path(format: "xls") %>
+    </p>
+  <%end%>
+  <% end %>
+<table class="table table-hover table-striped">
+  <tr>
+    <th>Usuario</th>
+    <th>Fecha</th>
+    <th>Ubicación</th>
+    <th colspan="2" align="center">Acciones</th>
+  </tr>
+
+<% @surveys.each do |survey| %>
+  <tr class="<%= cycle("success", "info")%>">
+    <td><%= survey.user.username if survey.user %></td>
+    <td><%= survey.created_at.in_time_zone('America/Mexico_City').strftime("%d de %b %H:%M")%></td>
+    <td><% if survey.latitude.present? %><a href="http://maps.google.com/maps?q=<%= survey.latitude %>,<%= survey.longitude %>" title="" target="_blank">Ver Mapa</a><% else %><small>No Existe!</small><% end %></td>
+    <td><%= link_to 'Editar', edit_survey_path(survey) %></td>
+    <td><%= link_to 'Destroy', survey, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,28 @@
+<%= form_for [:admin, :polygon, @tree], :html => {:multipart => true} do |f| %>
+  <div class="row">
+    <% if @tree.errors.any? %>
+      <div class="alert alert-danger">
+        <strong><%= pluralize(@tree.errors.count, "Error") %></strong> prohibieron a este arbol guardar la información!
+        <ul>
+          <% @tree.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <%= f.hidden_field :polygon_id %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => 'form-control'%>
+  </div>
+  <div class="form-group">
+    <%= f.label :file %>
+    <%= f.file_field :file, :class => 'form-control'%>
+  </div>
+  <div class="form-group">
+    <%= f.label :visible, "Visible para" %>
+    <%= f.select :visible, ['Publico', 'Capacitador'], {:class => "form-control"}, :class => 'form-control'%>
+  </div>
+  <div class="form-group"><%= f.submit  "Guardar", :class => 'btn btn-success' %></div>
+<% end %>

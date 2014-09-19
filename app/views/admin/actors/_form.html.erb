@@ -1,0 +1,89 @@
+<div class="form profile">
+  <%= form_for [:admin, :polygon, @actor] do |f| %>
+      <div class="row">
+        <% if @actor.errors.any? %>
+          <div class="alert alert-danger">
+            <strong><%= pluralize(@actor.errors.count, "Error") %></strong> prohibieron a este poligono guardar la información!
+            <ul>
+              <% @actor.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "Nombre de la institución" %>
+        <%= f.text_field :name, :class => "form-control input-lg", :placeholder => "Nombre de la institución" %>
+      </div>
+      <%= f.hidden_field :polygon_id, :value => params[:polygon_id] %>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :address, "Dirección" %>
+            <%= f.text_field :address, :class => "form-control", :placeholder => "Calle, Colonia" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Estado</label>
+            <%= f.select(:state_id, State.all.collect {|p| [ p.name, p.id ] }, { include_blank: "-- Selecciona" }, {:class => "form-control"} ) %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :city, "Ciudad" %>
+            <%= f.text_field :city, :class => "form-control", :placeholder => "Ciudad" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :phone, "Teléfono de oficina" %>
+            <%= f.text_field :phone, :class => "form-control", :placeholder => "Teléfono de oficina" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :website, "Pagina Web" %>
+            <%= f.text_field :website, :class => "form-control", :placeholder => "Pagina Web" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :email, "Email" %>
+            <%= f.text_field :email, :class => "form-control", :placeholder => "Email" %>
+          </div>
+        </div>
+      </div>
+
+      <h4>Redes sociales</h4>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Representante Oficial</label>
+            <%= f.select(:user_id, User.all.collect {|p| [ p.username, p.id ] }, { include_blank: "-- Selecciona" }, {:class => "form-control"} ) %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :facebook, "Facebook" %>
+            <%= f.text_field :facebook, :class => "form-control", :placeholder => "Facebook" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :twitter, "Twitter" %>
+            <%= f.text_field :twitter, :class => "form-control", :placeholder => "Twitter" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <!-- Buttons -->
+        <%= f.submit params[:id].present? ? "Actualizar" : "Añadir", :class => 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
